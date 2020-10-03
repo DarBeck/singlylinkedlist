@@ -7,6 +7,7 @@ class Node
 {
 public:
 	Node();
+	~Node();
 	Node(shared_ptr<Student> data);
 	Node(shared_ptr<Node> node);
 	void SetNextNode(shared_ptr<Node> inNextNode);

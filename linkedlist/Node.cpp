@@ -6,6 +6,13 @@ Node::Node()
 	nextNode = nullptr;
 }
 
+Node::~Node()
+{
+	/*cout << endl;
+	cout << "Node Linking to: " << GetData()->GetStudentId() << " deleted" << endl;
+	cout << endl;*/
+}
+
 Node::Node(shared_ptr<Student> data)
 {
 	student = data;

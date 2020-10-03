@@ -7,6 +7,13 @@ Student::Student()
 	studentGpa = 0.0;
 }
 
+Student::~Student()
+{
+	/*cout << endl;
+	cout << "Student: " << studentId << " is deleted" << endl;
+	cout << endl;*/
+}
+
 Student::Student(int inStudentId, string inStudentName, double inStudentGpa)
 {
 	studentId = inStudentId;
@@ -17,6 +24,11 @@ Student::Student(int inStudentId, string inStudentName, double inStudentGpa)
 int Student::GetStudentId()
 {
 	return studentId;
+}
+
+string Student::GetStudentName()
+{
+	return studentName;
 }
 
 void Student::DisplayStudent()

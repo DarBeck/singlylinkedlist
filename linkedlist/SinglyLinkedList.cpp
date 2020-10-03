@@ -7,22 +7,22 @@ SinglyLinkedList::SinglyLinkedList()
 
 void SinglyLinkedList::InsertAtBack(shared_ptr<Student> data)
 {
-    unique_ptr<Node> temp(make_unique<Node>(data));
+    shared_ptr<Node> temp(make_shared<Node>(data));
 
     if (temp != nullptr)
     {
         if (head == nullptr)
         {
-            head = move(temp);
+            head = temp;
         }
         else
         {
-            shared_ptr<Node> temp2 (make_shared<Node>(head));
+            shared_ptr<Node> temp2 = head;
             while (temp2->GetNextNode() != nullptr)
             {
                 temp2 = temp2->GetNextNode();
             }
-            temp2->SetNextNode(move(temp));
+            temp2->SetNextNode(temp);
         }
 
     }
@@ -39,6 +39,7 @@ void SinglyLinkedList::RemoveStudent(int studentId)
 
     if (selector == nullptr)
     {
+        cout << endl;
         cout << "Error! The List is Empty" << endl;
         return;
     }
@@ -47,8 +48,12 @@ void SinglyLinkedList::RemoveStudent(int studentId)
     if (selector->GetData()->GetStudentId() == studentId)
     {
         studentToRemove = make_shared<Node>(selector);
-        head = move(selector->GetNextNode());
-        cout << "Removed: " << studentToRemove->GetData()->GetStudentId() << endl;
+        head = selector->GetNextNode();
+        cout << endl;
+        cout << "---------------------------------------" << endl;
+        cout << "Student Removed: " << endl;
+        studentToRemove->DisplayData();
+        cout << "---------------------------------------" << endl;
         cout << endl;
     }
     else {
@@ -58,7 +63,11 @@ void SinglyLinkedList::RemoveStudent(int studentId)
             {
                 studentToRemove = selector->GetNextNode();
                 selector->SetNextNode(studentToRemove->GetNextNode());
-                cout << "Removed: " << studentToRemove->GetData()->GetStudentId() << endl;
+                cout << endl;
+                cout << "---------------------------------------" << endl;
+                cout << "Student Removed: " << endl;
+                studentToRemove->DisplayData();
+                cout << "---------------------------------------" << endl;
                 cout << endl;
                 return;
             }
@@ -67,6 +76,7 @@ void SinglyLinkedList::RemoveStudent(int studentId)
         }
 
         // if student was not found
+        cout << endl;
         cout << "Error! Student ID was not found" << endl;
         cout << endl;
     }
@@ -79,7 +89,7 @@ shared_ptr<Student> SinglyLinkedList::SearchStudent(int studentId)
 
     if (selector == nullptr)
     {
-        cout << "Error! The List is Empty" << endl;
+        //cout << "Error! The List is Empty" << endl;
         return student;
     }
 
@@ -93,38 +103,45 @@ shared_ptr<Student> SinglyLinkedList::SearchStudent(int studentId)
         selector = selector->GetNextNode();
     }
 
-    cout << "Error! Student ID not found" << endl;
+    //cout << "Error! Student ID not found" << endl;
     
     return student;
 }
 
 void SinglyLinkedList::DisplayList()
 {
+    if (head == nullptr)
+        cout << "Error! List is Empty!" << endl;
+
     shared_ptr<Node> temp = head;
     while (temp != nullptr)
     {
+        cout << endl;
+        cout << "---------------------------------------" << endl;
         temp->DisplayData();
-        cout << "---------------" << endl;
+        cout << "---------------------------------------" << endl;
         temp = temp->GetNextNode();
     }
 }
 
 void SinglyLinkedList::DestroyList()
 {
-    shared_ptr<Node> selector = head;
-    shared_ptr<Node> selector2 = head->GetNextNode();
-
-    if (selector == nullptr)
+    if (head == nullptr)
     {
         cout << "Error! The List is Empty" << endl;
-        return;
+    }
+    else
+    {
+        shared_ptr<Node> selector2 = head->GetNextNode();
+        
+        while (head != nullptr)
+        {
+            head = nullptr;
+            head = selector2;
+            if (selector2 != nullptr)
+                selector2 = selector2->GetNextNode();
+        }
     }
 
-    do
-    {
-        selector ;
-        selector = selector2;
-        if (selector2 != nullptr)
-            selector2 = selector2->GetNextNode();
-    } while (selector != nullptr);
+   
 }
