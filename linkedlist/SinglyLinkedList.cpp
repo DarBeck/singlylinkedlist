@@ -24,7 +24,6 @@ void SinglyLinkedList::InsertAtBack(shared_ptr<Student> data)
             }
             temp2->SetNextNode(temp);
         }
-
     }
     else
     {
@@ -142,6 +141,4 @@ void SinglyLinkedList::DestroyList()
                 selector2 = selector2->GetNextNode();
         }
     }
-
-   
 }

@@ -14,6 +14,5 @@ public:
 
 private:
 	shared_ptr<Node> head;
-
 };
 

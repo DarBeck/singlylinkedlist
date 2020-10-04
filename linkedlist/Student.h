@@ -18,6 +18,5 @@ private:
 	int studentId;
 	string studentName;
 	double studentGpa;
-
 };
 

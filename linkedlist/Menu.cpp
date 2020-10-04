@@ -100,7 +100,6 @@ void Menu::AddStudentOption()
 	} while (inStudentId != 0);
 	
 	ShowMenu();
-
 }
 
 void Menu::RemoveStudentOption()
@@ -118,10 +117,8 @@ void Menu::RemoveStudentOption()
 
 		if (inStudentId != 0)
 		{
-			
 			studentList->RemoveStudent(inStudentId);
 		}
-
 	} while (inStudentId != 0);
 
 	ShowMenu();
@@ -143,7 +140,6 @@ void Menu::SearchStudentOption()
 
 		if (inStudentId != 0)
 		{
-
 			student = studentList->SearchStudent(inStudentId);
 			if (student != nullptr) 
 			{
@@ -154,13 +150,12 @@ void Menu::SearchStudentOption()
 			}
 			else
 			{
+				cout << endl;
 				cout << "---------------------------------------" << endl;
 				cout << "Error! Student ID not found" << endl;
 				cout << "---------------------------------------" << endl;
 			}
-				
 		}
-
 	} while (inStudentId != 0);
 
 	ShowMenu();

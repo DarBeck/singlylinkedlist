@@ -22,7 +22,6 @@ Node::Node(shared_ptr<Student> data)
 Node::Node(shared_ptr<Node> node)
 {
 	student = node->student;
-
 }
 
 void Node::SetNextNode(shared_ptr<Node> inNextNode)
